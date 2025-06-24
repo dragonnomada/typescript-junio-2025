@@ -1,6 +1,6 @@
 # 🧩 Patrón Singleton en TypeScript
 
-El patrón Singleton garantiza que una clase tenga una única instancia global y proporciona un punto de acceso a ella.
+El patrón Singleton comparte una instancia global y proporciona un punto de acceso a ella.
 
 ## 🛡️ Recomendación
 

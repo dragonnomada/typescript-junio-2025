@@ -1,5 +1,6 @@
 import CounterStore from "./CounterStore";
 import Hello from "./Hello";
+import PersonaTest from "./PersonaTest";
 
 export default function App() {
 
@@ -17,6 +18,7 @@ export default function App() {
                 date={new Date()}
             />
             <CounterStore />
+            <PersonaTest />
         </div>
     )
 
