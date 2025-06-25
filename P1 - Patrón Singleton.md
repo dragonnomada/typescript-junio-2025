@@ -69,3 +69,11 @@ export class LocalStore {
 }
 ```
 
+## Ejercicio
+
+Diseña una clase llamada `Sesion` que implemente el patrón Singleto y retenga los datos opcionales de un usuario (diseña también la clase `Usuario`).
+
+Agrega los métodos convenientes para iniciar sesión y cerrar sesión.
+
+**Avanzado**: Usa el API de *http://randomuser.me* para hacer un inicio de sesión real usando `fetch`.
+

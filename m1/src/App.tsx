@@ -1,5 +1,7 @@
+import AlertUserConfirmTest from "./AlertUserConfirmTest";
 import CounterStore from "./CounterStore";
 import Hello from "./Hello";
+import ModalUserConfirmTest from "./ModalUserConfirmTest";
 import PersonaTest from "./PersonaTest";
 
 export default function App() {
@@ -19,6 +21,8 @@ export default function App() {
             />
             <CounterStore />
             <PersonaTest />
+            <AlertUserConfirmTest />
+            <ModalUserConfirmTest />
         </div>
     )
 

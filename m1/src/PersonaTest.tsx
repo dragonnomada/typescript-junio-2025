@@ -3,7 +3,7 @@ import { Persona } from "./Persona";
 
 export default function PersonaTest() {
 
-    const [persona, setPersona] = useState<Persona>(new Persona("Ana Ming", "women", 1))
+    const [persona, setPersona] = useState<Persona>(new Persona("Adre", "men", 15))
 
     return (
         <div

@@ -1,4 +1,4 @@
-# 🧩 Patrón Prototipo en TypeScript
+# 🧬 Patrón Prototipo en TypeScript
 
 El patrón Prototipo tiene el objetivo de devolver una copia o clon de un objeto instanciado.
 
@@ -71,3 +71,11 @@ export class Persona implements Clonable<Persona> {
 
 }
 ```
+
+## Ejercicio
+
+Implementa en la clase `Sesion` y `Usuario` la interfaz `Conable` para permitir copiar los datos de un usuario y de una sesión.
+
+Piensa en un caso de uso donde copiar la sesión y modificarla sea necesario.
+
+**Avanzado**: Diseña un componente que reciba la sesión, cree una copia, presente un formulario para iniciar sesión y devuelva otra copia de la sesión ya iniciada como resultado del componente. Agrega un ID aleatorio a la sesión para ir trazando los cambios.
