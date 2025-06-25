@@ -55,6 +55,12 @@ npm create vite@latest mi-proyecto -- --template react-ts
 npm install
 ```
 
+> Ejecución del proyecto
+
+```bash
+npm run dev
+```
+
 > Estructura de los archivos
 
 ```text
