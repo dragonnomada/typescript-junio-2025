@@ -76,8 +76,40 @@ mi-proyecto/
 
 ### Next.js
 
-```bash
+> Creación del proyecto
 
+```bash
+npx create-next-app@latest nombre-del-proyecto --typescript
+```
+
+> Instalación de las dependencias
+
+```bash
+npm install
+```
+
+> Ejecución del proyecto
+
+```bash
+npm run dev
+```
+
+> Estructura de los archivos
+
+```text
+nombre-del-proyecto/
+├─ pages/
+│  ├─ api/
+│  │  └─ hello.ts
+│  └─ index.tsx
+├─ public/
+├─ styles/
+│  ├─ globals.css
+│  └─ Home.module.css
+├─ tsconfig.json
+├─ next.config.js
+├─ package.json
+└─ README.md
 ```
 
 ### Webpack
@@ -232,6 +264,37 @@ export default function App() {
     <div id="root"></div>
 </body>
 </html>
+```
+
+## Eslint
+
+> Instalación
+
+```bash
+npm install -D eslint prettier eslint-config-next
+```
+
+> `.eslintrc.json`
+
+```json
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "indent": ["error", 4],
+    "quotes": ["error", "double"],
+    "semi": ["error", "never"]
+  }
+}
 ```
 
 ## ¿Qué es TypeScript y por qué usarlo con React?
