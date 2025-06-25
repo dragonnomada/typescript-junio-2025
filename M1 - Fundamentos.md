@@ -70,6 +70,12 @@ mi-proyecto/
 
 ### Next.js
 
+```bash
+
+```
+
+### Webpack
+
 > Creación del proyecto
 
 ```bash
