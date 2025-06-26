@@ -1,5 +1,7 @@
 // Filosofía 0 - Ir de lo funcional a lo sofisticado
 
+import { getUsersApi } from "./api/getUsersApi"
+
 // Filosofía 1 - La mayoría de los atributos deberían ser opcionales
 // Filosofía 2 - Todos los atributos deberían ser privados o protegidos
 
@@ -50,6 +52,24 @@ export class Usuario {
         if (!this.correo.includes("@")) throw Error(`El correo ${this.correo || "(vacío)"} no cumple el formato adecuado`)
 
         console.log("Iniciado sesión...", this)
+
+        const users = await getUsersApi()
+
+        console.log({ users })
+
+        for (const user of users) {
+            if (user.email === this.correo) {
+                console.log(user.email)
+                if (user.login.password === this.frase) {
+                    alert("Bienvenido")
+                    return // TODO BIEN
+                }
+            }
+        }
+
+        alert("No se pudo iniciar sesión")
+
+        return // TODO MAL
 
         // TODO: Verificar si el correo y contraseña corresponden a 
         // un usuario real de https://randomuser.me
