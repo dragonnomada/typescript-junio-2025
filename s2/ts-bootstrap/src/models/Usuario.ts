@@ -38,6 +38,23 @@ export class Usuario {
         return this.imagen
     }
 
+    public setCorreo(correo: string) {
+        this.correo = correo
+    }
+    
+    public setFrase(frase: string) {
+        this.frase = frase
+    }
+
+    public async iniciarSesion() {
+        if (!this.correo.includes("@")) throw Error(`El correo ${this.correo || "(vacío)"} no cumple el formato adecuado`)
+
+        console.log("Iniciado sesión...", this)
+
+        // TODO: Verificar si el correo y contraseña corresponden a 
+        // un usuario real de https://randomuser.me
+    }
+
     // Patrón Prototipo
     public copy(): Usuario {
         const usuarioCopia: Usuario = new Usuario(this.correo, this.frase)
@@ -56,11 +73,15 @@ export class Usuario {
 export class UsuarioBuilder extends Usuario {
 
     public static create(): UsuarioBuilder {
-        return new UsuarioBuilder()
+        return new UsuarioBuilder("", "")
+    }
+    
+    public static createAnonimo(): UsuarioBuilder {
+        return new UsuarioBuilder("anonimo@example.com", "123")
     }
 
-    private constructor() {
-        super("", "")
+    private constructor(correo: string, frase: string) {
+        super(correo, frase)
 
         return this // nos develvemos para continuar la construcción
     }

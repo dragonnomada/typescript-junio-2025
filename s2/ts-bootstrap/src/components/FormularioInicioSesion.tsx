@@ -1,12 +1,16 @@
+import { Button, Col, Container, Form, Image, Row, Stack } from "react-bootstrap"
+
 import { faLock } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { useState } from "react"
-import { Button, Col, Container, Form, Image, Row } from "react-bootstrap"
-// import { Usuario } from "../models/Usuario"
+import { useState } from "react"
+import { UsuarioBuilder, type Usuario } from "../models/Usuario"
 
 export default function FormularioInicioSesion() {
 
-    // const [usuario, setUsuario] = useState<Usuario>(new Usuario("", ""))
+    const [usuario, setUsuario] = useState<Usuario>(
+        UsuarioBuilder.createAnonimo()
+            // .ajustarImagen("https://placehold.co/800")
+    )
 
     return (
         <Container
@@ -39,11 +43,27 @@ export default function FormularioInicioSesion() {
                     >
                         <h1>Bienvenido</h1>
                         <h2>Iniciar Sesión</h2>
+                        <Stack
+                            className="d-flex flex-column align-items-center"
+                        >
+                            <Image
+                                className="w-25 object-fit-cover"
+                                src={usuario.getImagen()}
+                                fluid
+                                roundedCircle
+                            />
+                        </Stack>
                         <Form.Group>
                             <Form.Label>Correo</Form.Label>
                             <Form.Control
                                 type="email"
                                 placeholder="Ej. alicia@gmail.com"
+                                value={usuario.getCorreo()}
+                                onChange={(event) => {
+                                    usuario.setCorreo(event.target.value)
+                                    // Los estados solo cambian para nuevas instancias
+                                    setUsuario(usuario.copy())
+                                }}
                             />
                         </Form.Group>
                         <Form.Group>
@@ -51,10 +71,21 @@ export default function FormularioInicioSesion() {
                             <Form.Control
                                 type="password"
                                 placeholder="Ej. •••••"
+                                value={usuario.getFrase()}
+                                onChange={(event) => {
+                                    usuario.setFrase(event.target.value)
+                                    // Los estados solo cambian para nuevas instancias
+                                    setUsuario(usuario.copy())
+                                }}
                             />
                         </Form.Group>
                         <Button
                             type="submit"
+                            onClick={() => {
+                                usuario.iniciarSesion().catch(error => {
+                                    alert(`${error}`)
+                                })
+                            }}
                         >
                             Iniciar Sesión <FontAwesomeIcon icon={faLock} />
                         </Button>
