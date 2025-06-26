@@ -14,6 +14,16 @@ Su principal uso es poder resolver a través de los parámetros, un conjunto de 
 
 ```tsx
 // TODO: Ejemplo en clase
+
+// Diseña una interfaz ButtonColorStyle con la paleta de colores de un botón
+// Diseña una interfaz CardColorStyle con la paleta de colores de una tarjeta
+
+// Implementa dos clases diferentes de ButtonColorStyle para Light y Dark
+// Implementa dos clases diferentes de CardColorStyle para Light y Dark
+
+// Diseña una clase ThemeColorStyle con un atributo de ButtonColorStyle y CardColorStyle
+
+// Añade un método estático para fabricar el tema de color Light y otro Dark
 ```
 
 ## Ejercicio

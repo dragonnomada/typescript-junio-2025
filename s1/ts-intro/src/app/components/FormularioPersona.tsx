@@ -39,13 +39,19 @@ export class Persona {
     public setHombre() {
         this.genero = "Hombre"
     }
-    
+
     public setMujer() {
         this.genero = "Mujer"
     }
-    
+
     public setDesconocido() {
         this.genero = "Desconocido"
+    }
+
+    public copia(): Persona {
+        const nuevaPersona = new Persona(this.nombre, this.edad)
+        nuevaPersona.genero = this.genero
+        return nuevaPersona
     }
 
 }
@@ -58,43 +64,56 @@ export default function FormularioPersona() {
 
     return (
         <div>
-            <input 
-                type="text"
-                value={persona.getNombre()}
-                onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    persona.setNombre(event.target.value)
-                    setPersona(persona)
-                }}
-            />
-            <input 
-                type="number"
-                value={persona.getEdad()}
-                onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    persona.setNombre(event.target.value)
-                    setPersona(persona)
-                }}
-            />
-            <select
-                value={persona.getGenero()}
-                onChange={(event: ChangeEvent<HTMLSelectElement>) => {
-                    switch(event.target.value) {
-                        case "Hombre":
-                            persona.setHombre()
-                            break;
-                        case "Hombre":
-                            persona.setMujer()
-                            break;
-                        default:
-                            persona.setDesconocido()
-                            break;
-                    }
-                    setPersona(persona)
-                }}
-            >
-                <option value="Hombre">Hombre</option>
-                <option value="Mujer">Mujer</option>
-                <option value="Desconocido">Desconocido</option>
-            </select>
+            <div>
+                <input
+                    type="text"
+                    value={persona.getNombre()}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                        persona.setNombre(event.target.value)
+                        setPersona(persona.copia())
+                    }}
+                />
+                <input
+                    type="number"
+                    value={persona.getEdad()}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) => {
+                        persona.setEdad(Number(event.target.value))
+                        setPersona(persona.copia())
+                    }}
+                />
+                <select
+                    value={persona.getGenero()}
+                    onChange={(event: ChangeEvent<HTMLSelectElement>) => {
+                        switch (event.target.value) {
+                            case "Hombre":
+                                persona.setHombre()
+                                break;
+                            case "Mujer":
+                                persona.setMujer()
+                                break;
+                            default:
+                                persona.setDesconocido()
+                                break;
+                        }
+                        setPersona(persona.copia())
+                    }}
+                >
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                    <option value="Desconocido">Desconocido</option>
+                </select>
+            </div>
+            <div>
+                <div>
+                    <span>Nombre: {persona.getNombre()}</span>
+                </div>
+                <div>
+                    <span>Edad: {persona.getEdad()}</span>
+                </div>
+                <div>
+                    <span>Género: {persona.getGenero()}</span>
+                </div>
+            </div>
         </div>
     )
 
