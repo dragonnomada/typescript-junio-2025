@@ -4,12 +4,21 @@ import { faLock } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useState } from "react"
 import { UsuarioBuilder, type Usuario } from "../models/Usuario"
+import { Sesion } from "../models/Sesion"
 
-export default function FormularioInicioSesion() {
+export type FormularioInicioSesionProps = {
+    
+    onSesion: (sesion: Sesion) => void
+
+}
+
+export default function FormularioInicioSesion({
+    onSesion
+}: FormularioInicioSesionProps) {
 
     const [usuario, setUsuario] = useState<Usuario>(
-        UsuarioBuilder.createAnonimo()
-            // .ajustarImagen("https://placehold.co/800")
+        UsuarioBuilder.create()
+        // .ajustarImagen("https://placehold.co/800")
     )
 
     return (
@@ -82,9 +91,17 @@ export default function FormularioInicioSesion() {
                         <Button
                             type="submit"
                             onClick={() => {
-                                usuario.iniciarSesion().catch(error => {
-                                    alert(`${error}`)
-                                })
+                                Sesion.iniciarSesion(usuario)
+                                    .then(() => {
+                                        onSesion(Sesion.shared)
+                                    })
+                                    .catch((error: Error) => {
+                                        alert(error.message)
+                                    })
+
+                                // usuario.iniciarSesion().catch(error => {
+                                //     alert(`${error}`)
+                                // })
                             }}
                         >
                             Iniciar Sesión <FontAwesomeIcon icon={faLock} />
