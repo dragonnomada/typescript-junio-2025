@@ -1,12 +1,8 @@
 import { faLock } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-// import { useState } from "react"
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap"
-// import { Usuario } from "../models/Usuario"
 
 export default function FormularioInicioSesion() {
-
-    // const [usuario, setUsuario] = useState<Usuario>(new Usuario("", ""))
 
     return (
         <Container
