@@ -1,11 +1,16 @@
 import { Image } from "react-bootstrap"
-import type { RandomUser } from "../Models/RandomUser"
-import useRandomUserList from "../ViewModels/useRandomUserList"
+import { useAppContext } from "../Context/AppContext"
+// import type { RandomUser } from "../Models/RandomUser"
+// import useRandomUserList from "../ViewModels/useRandomUserList"
 
 // Responsabilidad: Mostrar la lista de usuarios
 export default function RandomUserList() {
 
-    const users: RandomUser[] = useRandomUserList()
+    // const users: RandomUser[] = useRandomUserList()
+
+    const appService = useAppContext()
+
+    const users = appService.getRecentUsers()
 
     return (
         <div>
