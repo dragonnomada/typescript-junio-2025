@@ -34,30 +34,13 @@ export function AppContextProvider({
         AppServiceShared.shared
     )
 
-    // service.onRefresh = () => {
-    //     setService(AppServiceShared.refresh())
-    // }
+    service.setListener(() => {
+        setService(AppServiceShared.refresh())
+    })
 
-    // :( Hacemos una observación manual
     return (
         <AppContext.Provider
-            value={{
-                getUsers() {
-                    return service.getUsers() // sin cambios
-                },
-                getRecentUsers() {
-                    return service.getRecentUsers() // sin cambio
-                },
-                searchUsers(search) {
-                    // Refrescado manual
-                    return service.searchUsers(search).finally(() => {
-                        setService(AppServiceShared.refresh())
-                    })
-                },
-                copy() {
-                    return service.copy()
-                },
-            }}
+            value={service}
         >
             {children}
         </AppContext.Provider>

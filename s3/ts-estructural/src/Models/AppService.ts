@@ -11,11 +11,20 @@ export interface AppService extends RandomUserService {
     // Responsabilidad 2: Buscar a los usuarios (hacer la consulta)
     searchUsers(search: string): Promise<RandomUser[]>
 
+    // Resposabilidad 3: Retener a una función que escucha cuando hay cambios
+    setListener(listener: () => void): void
+
 }
 
 // 2. La implementación por defecto del servicio
 // Responsabilidad: Filtrar los usuarios consultados
 export class AppServiceDefault extends RandomUserRepositoryServiceApi implements AppService {
+
+    private listener?: () => void
+
+    setListener(listener: () => void): void {
+        this.listener = listener
+    }
 
     getRecentUsers(): RandomUser[] {
         return this.users
@@ -28,49 +37,59 @@ export class AppServiceDefault extends RandomUserRepositoryServiceApi implements
         const users = await super.getUsers()
 
         for (const user of users) {
-            if (user.name.first.includes(search)) {
+            if (user.name.first.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
-            if (user.name.last.includes(search)) {
+            if (user.name.last.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
-            if (user.email.includes(search)) {
+            if (user.email.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
-            if (user.gender.includes(search)) {
+            if (["male", "female"].includes(search.toLowerCase())) {
+                if (user.gender === search.toLowerCase()) {
+                    filterdUsers.push(user)
+                    continue
+                }
+            }
+            // if (user.gender.toLocaleLowerCase().includes(search.toLowerCase())) {
+            //     filterdUsers.push(user)
+            //     continue
+            // }
+            if (user.cell.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
-            if (user.cell.includes(search)) {
+            if (user.phone.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
-            if (user.phone.includes(search)) {
+            if (user.location.city.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
-            if (user.location.city.includes(search)) {
+            if (user.location.country.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
-            if (user.location.country.includes(search)) {
+            if (user.location.state.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
-            if (user.location.state.includes(search)) {
-                filterdUsers.push(user)
-                continue
-            }
-            if (user.location.street.name.includes(search)) {
+            if (user.location.street.name.toLocaleLowerCase().includes(search.toLowerCase())) {
                 filterdUsers.push(user)
                 continue
             }
         }
 
         this.users = filterdUsers
+
+        if (this.listener) {
+            this.listener()
+        }
 
         return this.users
 

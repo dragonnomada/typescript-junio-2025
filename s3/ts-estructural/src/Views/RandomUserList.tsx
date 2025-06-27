@@ -22,7 +22,7 @@ export default function RandomUserList() {
             {
                 users.map(user => {
                     return (
-                        <div 
+                        <div
                             key={user.login.uuid}
                             className="d-flex flex-row gap-3 border-bottom"
                         >
@@ -31,12 +31,13 @@ export default function RandomUserList() {
                                     src={user.picture.thumbnail}
                                 />
                             </div>
-                            <div>
+                            <div className="d-flex flex-column flex-grow-1">
                                 <div>
                                     <span>{user.name.first} {user.name.last}</span>
                                 </div>
-                                <div className="text-muted">
+                                <div className="text-muted d-flex flex-grow-1 justify-content-between gap-2">
                                     <span>{user.gender}</span>
+                                    <span>{user.location.country}</span>
                                 </div>
                             </div>
                         </div>

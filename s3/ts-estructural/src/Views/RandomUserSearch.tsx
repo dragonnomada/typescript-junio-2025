@@ -41,6 +41,9 @@ export default function RandomUserSearch() {
                         value={search}
                         onChange={event => {
                             setSearch(event.target.value)
+                            if (event.target.value === "") {
+                                appService.searchUsers("")
+                            }
                         }}
                         onKeyDown={event => {
                             if (event.key === "Enter") {
