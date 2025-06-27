@@ -4,7 +4,12 @@ export default function App() {
 
     return (
         <div>
-            <RandomUserList />
+            <div className="p-3">
+                <RandomUserList />
+            </div>
+            <div className="p-3">
+                <RandomUserList />
+            </div>
         </div>
     )
 

@@ -25,9 +25,13 @@ export class RandomUserServiceMokup implements RandomUserService {
 
 export class RandomUserServiceApi implements RandomUserService {
 
+    constructor() {
+        console.log("Se ha creado una instnacia del Servicio de Consulta de Usuarios vía API")
+    }
+
     async getUsers(): Promise<RandomUser[]> {
 
-        const response = await fetch("https://randomuser.me/api?seed=123&results=100")
+        const response = await fetch("https://randomuser.me/api?seed=123&results=5")
 
         if (response.ok) {
             const data: RandomUserApiResponse = await response.json()

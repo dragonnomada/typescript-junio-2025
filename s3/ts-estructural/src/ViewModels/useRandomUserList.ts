@@ -2,17 +2,15 @@ import { useEffect, useState } from "react"
 
 import type { RandomUser } from "../Models/RandomUser"
 import { type RandomUserService } from "../Models/RandomUserService"
-import { RandomUserServiceBuilder } from "../Models/RandomUserServiceBuilder"
+import { RandomUserServiceShared } from "../Models/RandomUserServiceShared"
 
 // Responsabilidad: Recuperar la lista de usuarios consultados
 export default function useRandomUserList(): RandomUser[] {
 
     // Error 1: Necesitamos una instancia del Servicio
     // Corrección:
-    // - Patrón Singletón (Singleton) - Compartir el mismo servicio (la misma instancia)
     // - Patrón Prototipo (Prototype) - Refresque o copie las instancias (a nuevas)
-    // const randomUserService: RandomUserService = RandomUserServiceBuilder.createServiceByMockup() // R1 (genera el servicio de consulta)
-    const randomUserService: RandomUserService = RandomUserServiceBuilder.createServiceByApi() // R1 (genera el servicio de consulta)
+    const randomUserService: RandomUserService = RandomUserServiceShared.shared
 
     // Error 2: Necesitamos retener los resultados del servicio
     // Correción:
