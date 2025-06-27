@@ -6,35 +6,35 @@ class EditorMemento {
 }
 
 class Editor {
-  private content: string = "";
+  private content: string = ""
 
   type(words: string) {
-    this.content += words;
+    this.content += words
   }
 
   save(): EditorMemento {
-    return new EditorMemento(this.content);
+    return new EditorMemento(this.content)
   }
 
   restore(memento: EditorMemento) {
-    this.content = memento.content;
+    this.content = memento.content
   }
 
   getContent() {
-    return this.content;
+    return this.content
   }
 }
 
 // Uso
-const editor = new Editor();
-editor.type("Hola ");
-editor.type("mundo");
+const editor = new Editor()
+editor.type("Hola ")
+editor.type("mundo")
 
-const saved = editor.save(); // guarda estado
+const saved = editor.save() // guarda estado
 
-editor.type(" cruel");
-console.log(editor.getContent()); // Hola mundo cruel
+editor.type(" cruel")
+console.log(editor.getContent()) // Hola mundo cruel
 
-editor.restore(saved); // restaurar
-console.log(editor.getContent()); // Hola mundo
+editor.restore(saved) // restaurar
+console.log(editor.getContent()) // Hola mundo
 ```

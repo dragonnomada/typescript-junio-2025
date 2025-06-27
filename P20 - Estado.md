@@ -2,41 +2,41 @@
 
 ```ts
 interface State {
-  handle(): void;
+  handle(): void
 }
 
 class HappyState implements State {
   handle() {
-    console.log("😊 Estoy feliz");
+    console.log("😊 Estoy feliz")
   }
 }
 
 class SadState implements State {
   handle() {
-    console.log("😢 Estoy triste");
+    console.log("😢 Estoy triste")
   }
 }
 
 class PersonContext {
-  private state: State;
+  private state: State
 
   constructor(state: State) {
-    this.state = state;
+    this.state = state
   }
 
   setState(state: State) {
-    this.state = state;
+    this.state = state
   }
 
   behave() {
-    this.state.handle();
+    this.state.handle()
   }
 }
 
 // Uso
-const person = new PersonContext(new HappyState());
-person.behave(); // 😊 Estoy feliz
+const person = new PersonContext(new HappyState())
+person.behave() // 😊 Estoy feliz
 
-person.setState(new SadState());
-person.behave(); // 😢 Estoy triste
+person.setState(new SadState())
+person.behave() // 😢 Estoy triste
 ```
