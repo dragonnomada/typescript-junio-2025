@@ -1,5 +1,6 @@
 import { useFormProduct } from "../ViewModels/useFormProduct"
 
+// Vista
 export default function FormProduct() {
 
     const product = useFormProduct()

@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import { ProductBuilder, type Product } from "../models/Product"
 
+// Vista-Modelo
 export function useFormProduct(): Product {
 
     const [product, setProduct] = useState<Product>(

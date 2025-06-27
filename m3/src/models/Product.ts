@@ -4,6 +4,7 @@ export interface Clonable<T> {
 
 }
 
+// Modelo
 export interface Product extends Clonable<Product> {
 
     getName(): string
@@ -14,6 +15,7 @@ export interface Product extends Clonable<Product> {
 
 }
 
+// Modelo-Vista
 export class FormProduct implements Product {
 
     protected name: string = ""
