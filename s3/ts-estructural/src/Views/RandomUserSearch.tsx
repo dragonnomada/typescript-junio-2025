@@ -65,6 +65,9 @@ export default function RandomUserSearch() {
                     </Button>
                 </InputGroup>
             </div>
+            <div>
+                <span>Resultados: {appService.getRecentUsers().length}</span>
+            </div>
         </div>
     )
 
