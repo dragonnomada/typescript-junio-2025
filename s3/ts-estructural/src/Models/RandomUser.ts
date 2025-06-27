@@ -1,4 +1,4 @@
-export interface RadomUserApiResponse {
+export interface RandomUserApiResponse {
     results: RandomUser[]
     info: Info
 }
