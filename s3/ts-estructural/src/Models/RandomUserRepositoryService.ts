@@ -1,4 +1,5 @@
 import type { RandomUser } from "./RandomUser"
+
 import { RandomUserServiceApi, type RandomUserService } from "./RandomUserService"
 
 // Responsabilidad: Almacenar los resultados de la búsqueda
