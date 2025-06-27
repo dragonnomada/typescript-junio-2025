@@ -1,4 +1,4 @@
-import RandomUserList from "./Views/RandomUserList";
+import RandomUserList from "./Views/RandomUserList"
 
 export default function App() {
 

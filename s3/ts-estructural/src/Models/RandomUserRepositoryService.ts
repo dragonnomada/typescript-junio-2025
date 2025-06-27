@@ -9,11 +9,14 @@ export interface RandomUserRepositoryService extends RandomUserService {
 
 }
 
+// Responsabilidad: Retener los usuarios consultados por el API
 export class RandomUserRepositoryServiceApi extends RandomUserServiceApi implements RandomUserRepositoryService {
 
     users: RandomUser[] = []
 
     async getUsers(): Promise<RandomUser[]> {
+
+        console.log("Los datos del repositorio han sido actualizados")
     
         const users = await super.getUsers()
 
@@ -21,6 +24,12 @@ export class RandomUserRepositoryServiceApi extends RandomUserServiceApi impleme
 
         return users
 
+    }
+
+    copy(): RandomUserService {
+        const randomUserServiceCopy = new RandomUserRepositoryServiceApi()
+        randomUserServiceCopy.users = this.users
+        return randomUserServiceCopy
     }
 
 }

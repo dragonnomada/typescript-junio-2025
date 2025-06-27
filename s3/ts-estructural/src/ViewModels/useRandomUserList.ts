@@ -1,28 +1,31 @@
 import { useEffect, useState } from "react"
 
 import type { RandomUser } from "../Models/RandomUser"
-import { type RandomUserService } from "../Models/RandomUserService"
+import type { RandomUserService } from "../Models/RandomUserService"
 import { RandomUserServiceShared } from "../Models/RandomUserServiceShared"
+import type { RandomUserRepositoryService } from "../Models/RandomUserRepositoryService"
 
 // Responsabilidad: Recuperar la lista de usuarios consultados
 export default function useRandomUserList(): RandomUser[] {
 
-    // Error 1: Necesitamos una instancia del Servicio
-    // Corrección:
-    // - Patrón Prototipo (Prototype) - Refresque o copie las instancias (a nuevas)
-    const randomUserService: RandomUserService = RandomUserServiceShared.shared
+    // Paso 1: Retenemos el servicio compartido
+    const [randomUserService, setRandomUserService] = useState<RandomUserService>(
+        RandomUserServiceShared.shared
+    )
 
-    // Error 2: Necesitamos retener los resultados del servicio
-    // Correción:
-    // - Necesitamos un repositorio que almacene los resultados por nosotros
-    const [users, setUsers] = useState<RandomUser[]>([]) // R2 (retén los datos de la consulta)
-    
+    // Error: Segunda responsabilidad sobre hacer la búsqueda
     useEffect(() => {
-        randomUserService.getUsers().then(users => {
-            setUsers(users)
+        // Paso 2: Después de actualizar los usuarios
+        randomUserService.getUsers().then(() => {
+            // Paso 3: Actualizamos el servicio compartido retenido
+            setRandomUserService(
+                RandomUserServiceShared.refreshShared()
+            )
         })
-    }, []) // R3 (haz la consulta)
+    }, [])
 
-    return users
+    const repostory = randomUserService as RandomUserRepositoryService
+
+    return repostory.users
 
 }

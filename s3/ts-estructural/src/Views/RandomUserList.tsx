@@ -10,6 +10,11 @@ export default function RandomUserList() {
     return (
         <div>
             {
+                users.length === 0 ? (
+                    <span className="text-muted">No hay usuarios todavía...</span>
+                ) : null
+            }
+            {
                 users.map(user => {
                     return (
                         <div 

@@ -4,13 +4,16 @@ import type { RandomUser, RandomUserApiResponse } from "./RandomUser"
 
 import { RandomUsersExample1 } from "./mockup/RandomUsersExample1"
 
-// Responsabilidad: Consultar a los usuarios del API y devolverlos
+// Responsabilidad: Consultar a los usuarios devolverlos
 export interface RandomUserService {
 
     getUsers(): Promise<RandomUser[]>
 
+    copy(): RandomUserService
+
 }
 
+// Responsabilidad: Consultar a los usuarios de prueba devolverlos
 export class RandomUserServiceMokup implements RandomUserService {
 
     getUsers(): Promise<RandomUser[]> {
@@ -21,8 +24,13 @@ export class RandomUserServiceMokup implements RandomUserService {
 
     }
 
+    copy(): RandomUserService {
+        return new RandomUserServiceMokup()
+    }
+
 }
 
+// Responsabilidad: Consultar a los usuarios desde el API devolverlos
 export class RandomUserServiceApi implements RandomUserService {
 
     constructor() {
@@ -43,6 +51,10 @@ export class RandomUserServiceApi implements RandomUserService {
 
         throw new Error(error)
 
+    }
+
+    copy(): RandomUserService {
+        return new RandomUserServiceApi()
     }
 
 }
