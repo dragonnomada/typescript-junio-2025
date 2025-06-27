@@ -1,8 +1,11 @@
-import { faInfoCircle, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button, Form, InputGroup } from "react-bootstrap";
-import { useAppContext } from "../Context/AppContext";
-import { useState } from "react";
+import { useState } from "react"
+
+import { Button, Form, InputGroup } from "react-bootstrap"
+
+import { faInfoCircle, faSearch } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+
+import { useAppContext } from "../Context/AppContext"
 
 export default function RandomUserSearch() {
 

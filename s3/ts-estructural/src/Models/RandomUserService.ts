@@ -39,7 +39,7 @@ export class RandomUserServiceApi implements RandomUserService {
 
     async getUsers(): Promise<RandomUser[]> {
 
-        const response = await fetch("https://randomuser.me/api?seed=123&results=5")
+        const response = await fetch("https://randomuser.me/api?seed=123&results=100")
 
         if (response.ok) {
             const data: RandomUserApiResponse = await response.json()
