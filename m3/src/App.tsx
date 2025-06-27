@@ -1,15 +1,17 @@
-import { CounterContextProvider } from "./components/CounterContext";
-import CounterDemo from "./components/CounterDemo";
+// import { CounterContextProvider } from "./components/CounterContext"
+// import CounterDemo from "./components/CounterDemo"
+import FormProduct from "./Views/FormProduct"
 
 export default function App() {
 
     return (
         <div>
-            <CounterContextProvider>
+            {/* <CounterContextProvider>
                 <CounterDemo />
                 <CounterDemo />
                 <CounterDemo />
-            </CounterContextProvider>
+            </CounterContextProvider> */}
+            <FormProduct />
         </div>
     )
 
